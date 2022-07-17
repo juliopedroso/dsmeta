@@ -25,6 +25,8 @@ function SalesCard() {
 
         axios.get(`${BASE_URL}/sales?minDate=${dmin}&maxDate=${dmax}`)
             .then(response => {
+
+                console.log(response.data.content);
                 setSales(response.data.content);
             })
     }, [minDate, maxDate]);
@@ -71,7 +73,7 @@ function SalesCard() {
                                 return (
                                     <tr key={sale.id}>
                                         <td className="show992">{sale.id}</td>
-                                        <td className="show576">{new Date(sale.date).toLocaleDateString()}</td>
+                                        <td className="show576">{new Date(sale.date).toLocaleDateString('pt-BR', {timeZone: 'UTC'})}</td>
                                         <td>{sale.sellerName}</td>
                                         <td className="show992">{sale.visited}</td>
                                         <td className="show992">{sale.deals}</td>
